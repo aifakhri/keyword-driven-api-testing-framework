@@ -14,7 +14,7 @@ def test_getting_single_book(baseUrl):
     status_code = requests.get(endpoint_url).status_code
     assert status_code == 200
 
-def test_submitting_order(baseUrl, httpHeaders):
+def test_submitting_order(baseUrl, authHeader):
     endpoint = "/orders/"
     endpoint_url = baseUrl + endpoint
 
@@ -23,22 +23,22 @@ def test_submitting_order(baseUrl, httpHeaders):
         "customerName": "Bourne"
     }
     status_code = requests.post(endpoint_url, json=request_body,
-        headers=httpHeaders).status_code
+        headers=authHeader).status_code
     assert status_code == 201
 
-def test_geting_all_ordered_books(baseUrl, httpHeaders, orderId):
+def test_geting_all_ordered_books(baseUrl, authHeader, orderId):
     endpoint = f"/orders/{orderId}"
     endpoint_url = baseUrl + endpoint
-    status_code = requests.get(endpoint_url, headers=httpHeaders).status_code
+    status_code = requests.get(endpoint_url, headers=authHeader).status_code
     assert status_code == 200
 
-def test_getting_single_ordered_books(baseUrl, httpHeaders, orderId):
+def test_getting_single_ordered_books(baseUrl, authHeader, orderId):
     endpoint = f"/orders/{orderId}"
     endpoint_url = baseUrl + endpoint
-    status_code = requests.get(endpoint_url, headers=httpHeaders).status_code
+    status_code = requests.get(endpoint_url, headers=authHeader).status_code
     assert status_code == 200
 
-def test_updating_ordered_book(baseUrl, httpHeaders, orderId):
+def test_updating_ordered_book(baseUrl, authHeader, orderId):
     endpoint = f"/orders/{orderId}"
     endpoint_url = baseUrl + endpoint
     request_body = {
@@ -46,12 +46,12 @@ def test_updating_ordered_book(baseUrl, httpHeaders, orderId):
     }
 
     status_code = requests.patch(endpoint_url, json=request_body,
-        headers=httpHeaders).status_code
+        headers=authHeader).status_code
     assert status_code == 204
 
-def test_delete_order(baseUrl, httpHeaders, orderId):
+def test_delete_order(baseUrl, authHeader, orderId):
     endpoint = f"/orders/{orderId}"
     endpoint_url = baseUrl + endpoint
 
-    status_code = requests.patch(endpoint_url, headers=httpHeaders).status_code
+    status_code = requests.patch(endpoint_url, headers=authHeader).status_code
     assert status_code == 204

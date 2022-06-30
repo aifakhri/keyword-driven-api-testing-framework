@@ -11,7 +11,7 @@ def baseUrl():
     return "https://simple-books-api.glitch.me"
 
 @pytest.fixture
-def httpHeaders(baseUrl):
+def authHeader(baseUrl):
     endpoint = '/api-clients/'
     endpoint_url = baseUrl + endpoint
     body_parameter = {
