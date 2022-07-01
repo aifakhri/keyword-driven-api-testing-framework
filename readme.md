@@ -1,24 +1,40 @@
-# Automation API Testing with Pytest
-## Introduction
+# API Automation Testing with Pytest
+## Description
 This project is a simple replication of the course '[Postman Beginner's Course-API Testing](https://www.youtube.com/watch?v=VywxIQ2ZXw4),' from [freeCodeCamp](www.freecodecamp.org). 
 
-However, pytest is used to automate the testing instead of postman, and python requests library to get the http response from the end point. 
+Pytest is used as the test runner in this project. Python requests library is used to get the http response from API endpoint.
 
-In the future, a Sad-path testing method with modular approach, which is not covered on the course, will be added.
+## How to
+### Install 
+This program uses python 3.10.0, however the minimum requirement of Pytest is Python 3.7, so, it can be downloaded from Python [website](https://www.python.org/downloads/).
 
-## Project
-
-The current project consists of a simple pytest structure with conftest.py, which contain fixtures to make the project cleaner. 
-
-To run the test use this command from command line on the test directory:
-
-###### Windows cmd
+If using the same python version, the Pytest and requests libraries can be installed with this command:
+##### Windows Console
 ```console
-C:\Users\HostUsername\Document\TestDir>pytest test_book_api
+C:\{Your Directory}\TestDir>python -m pip install requirements.txt
 ```
-###### Unix/Linux Shell
+##### Unix Console
 ```console
-machine@username~$ pytest test_book_api
+machine@username~$ python3 -m pip install requirements.txt
+```
+
+If using different python version, Pytest installation can be found in [pytest website].(pytest.org)
+
+### Run the Project
+
+Clone the repo with Git to your desired local machine directory:
+```Git
+git clone [url]
+```
+
+Run the test with the following command:
+##### Windows Console
+```console
+C:\{Your Directory}\TestDir>pytest test_happy_path.py
+```
+##### Unix Console
+```console
+machine@username~$ pytest test_happy_path.py
 ```
 
 ## Resource
