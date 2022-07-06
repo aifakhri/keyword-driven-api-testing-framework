@@ -6,20 +6,29 @@ from endpoints.orders import OrderEndpoint
 
 def test_books_endpoint():
     books = BookEndpoint()
-    assert books.send_http_get_request() == 200
-    assert books.send_http_get_request(bookId=1) == 200
+    books.getting_book()
+    assert books.checking_status_code() == 200
 
+    books.getting_book(bookId="1")
+    assert books.checking_status_code() == 200
 
 def test_orders_endpoint(apiKey):
     orders = OrderEndpoint()
     orders.setup_auth_headers(apiKey)
     orders.setup_request_body(bookId=1, customerName="Michael Scott")
     
-    assert orders.send_post_requests().status_code == 201
-    assert orders.send_get_requests().status_code == 200
+    orders.submitting_book_order()
+    assert orders.checking_status_code() == 201
 
-    orders.update_customer_name("Dwight Schrute")
+    orders.getting_book_order_record()
+    assert orders.checking_status_code() == 200
 
-    assert orders.send_patch_request().status_code == 204
-    assert orders.send_delete_request().status_code == 204
+    orders.getting_book_order_record(allOrder=True)
+    assert orders.checking_status_code() == 200
     
+    orders.update_customer_name("Dwight Schrute")
+    orders.updating_ordered_book_record()
+    assert orders.checking_status_code() == 204
+
+    orders.deleting_ordered_book_entry()
+    assert orders.checking_status_code() == 204
