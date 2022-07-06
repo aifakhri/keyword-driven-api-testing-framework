@@ -12,8 +12,8 @@ def apiKey():
     baseUrl = "https://simple-books-api.glitch.me"
     endpoint_url = baseUrl + endpoint
     body_parameter = {
-        "clientName": "tester3",
-        "clientEmail": "tester3@zeit.de"
+        "clientName": "clientName",
+        "clientEmail": "clientEmail"
     }
     response = requests.post(endpoint_url, json=body_parameter)
     
