@@ -2,53 +2,36 @@ from .bases import BaseClass
 
 class OrderEndpoint(BaseClass):
     
-    __endpoint = "/orders/"
-    __request_body = {}
-    __auth_header = {}
-    __customer_name = {}
-    __orderId = ""
+    _endpoint = "/orders/"
 
+    def __init__(self):
+        super().__init__(endpoint=self._endpoint)
 
     def setup_request_body(self, bookId, customerName):
-        self.__request_body["bookId"] = bookId
-        self.__request_body["customerName"] = customerName
+        self._request_body["bookId"] = bookId
+        self._request_body["customerName"] = customerName
 
     def setup_auth_headers(self, apiKey):
-        self.__auth_header["Authorization"] = apiKey
+        self._auth_header["Authorization"] = apiKey
 
     def update_customer_name(self, customerName):
-        self.__customer_name["customerName"] = customerName
+        self._customer_name["customerName"] = customerName
 
-    def send_get_requests(self, orderId=False):
-        if orderId == False:
-            return self.request.get(
-                url=self.BASE_URL+self.__endpoint,
-                headers=self.__auth_header
-            )
+    def submitting_book_order(self):
+        return self._send_post_requests()
+
+    def getting_book_order_record(self, allOrder=False):
+        if allOrder == False:
+            return self._send_get_requests(auth=True)
         else:
-            return self.request.get(
-                url=self.BASE_URL+self.__endpoint+self.__orderId,
-                headers=self.__auth_header
-            )
+            return self._send_get_requests(auth=True, orderId=True)
+            
+    def updating_ordered_book_record(self):
+        return self._send_patch_requests()
 
-    def send_post_requests(self):
-        response = self.request.post(
-            url=self.BASE_URL+self.__endpoint,
-            json=self.__request_body,
-            headers=self.__auth_header
-        )
-        self.__orderId = response.json()["orderId"]
-        return response
+    def deleting_ordered_book_entry(self):
+        return self._send_delete_requests()
 
-    def send_patch_request(self):
-        return self.request.patch(
-            url=self.BASE_URL+self.__endpoint+self.__orderId,
-            json=self.__customer_name,
-            headers=self.__auth_header
-        )
 
-    def send_delete_request(self):
-        return self.request.delete(
-            url=self.BASE_URL+self.__endpoint+self.__orderId,
-            headers=self.__auth_header
-        )
+if __name__ == "__main__":
+    pass
