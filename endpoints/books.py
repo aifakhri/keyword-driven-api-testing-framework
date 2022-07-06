@@ -1,15 +1,20 @@
-from requests import request
 from .bases import BaseClass
 
 
 class BookEndpoint(BaseClass):
     
-    __endpoint = "/books/"
+    _endpoint = "/books/"
 
-    def send_http_get_request(self, bookId=None):
-        if bookId != None:
-            endpoint_url = self.BASE_URL + self.__endpoint
-            return self.request.get(endpoint_url)
+    def __init__(self):
+        super().__init__(endpoint=self._endpoint)
+    
+    def getting_book(self, bookId=""):
+        if bookId == "":
+            return self._send_get_requests()
         else:
-            endpoint_url = self.BASE_URL + self.__endpoint + bookId
-            return self.request.get(endpoint_url)
+            self._endpoint_url += str(bookId)
+            return self._send_get_requests()
+
+ 
+if __name__ == "__main__":
+    pass
