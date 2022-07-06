@@ -1,8 +1,7 @@
 import requests
-from abc import ABC
 
 
-class BaseClass(ABC):
+class BaseClass():
 
     _BASE_URL = "https://simple-books-api.glitch.me"
 
