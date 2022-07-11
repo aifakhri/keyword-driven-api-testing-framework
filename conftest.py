@@ -5,6 +5,7 @@ from endpoints.apiClient import ApiClient
 
 
 
+
 @pytest.fixture
 def apiKey():
     api = ApiClient()
