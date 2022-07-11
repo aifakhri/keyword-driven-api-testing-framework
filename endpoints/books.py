@@ -14,7 +14,3 @@ class BookEndpoint(BaseClass):
     
     def getting_multiple_books(self):
         return self._send_get_requests()
-
- 
-if __name__ == "__main__":
-    pass
