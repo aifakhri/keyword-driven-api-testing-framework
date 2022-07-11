@@ -30,4 +30,4 @@ pytest test_validation_api.py
 You could find the API documentation below:
 [Simple-Book-Api](https://github.com/vdespa/introduction-to-postman-course/blob/main/simple-books-api.md)
 
-And for more detail explanation on how to build this framework, please check out my medium [story]()
+And for more detail explanation on how to build this framework, please check out my medium [story](https://medium.com/@aitukangmakan/keywords-driven-test-framework-with-pytest-for-automated-api-testing-b8344e9df523)
