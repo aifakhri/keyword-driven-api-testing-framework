@@ -2,8 +2,6 @@ from .bases import BaseClass
 
 
 
-
-
 class OrderEndpoint(BaseClass):
     
     _endpoint = "/orders/"
