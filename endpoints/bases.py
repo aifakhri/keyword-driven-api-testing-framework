@@ -2,6 +2,8 @@ import requests
 import copy
 
 
+
+
 class BaseClass():
 
     _BASE_URL = "https://simple-books-api.glitch.me"
