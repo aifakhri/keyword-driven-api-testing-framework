@@ -4,6 +4,7 @@ from endpoints.apiClient import ApiClient
 
 
 
+
 def test_multiple_books_endpoint():
     books = BookEndpoint()
     books.getting_multiple_books()
