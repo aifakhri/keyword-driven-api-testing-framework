@@ -23,7 +23,7 @@ git clone [url]
 Run the test with the following command:
 ##### Windows Console
 ```console
-C:\{Your Directory}\TestDir>pytest test_validation_api.py
+pytest test_validation_api.py
 ```
 
 ## Resource
