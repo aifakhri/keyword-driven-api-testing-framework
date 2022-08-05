@@ -16,6 +16,7 @@ class BaseClass():
         self._request_body = {}
         self._customer_name = {}
         self._orderId = ""
+        self._error_msg = ""
         
 
     def _send_get_requests(self, auth=False):
@@ -34,7 +35,11 @@ class BaseClass():
                 json=self._request_body,
                 headers=self._auth_header
             )
-            self._orderId = self._response.json()["orderId"]
+            try:
+                self._orderId = self._response.json()["orderId"]
+                open("endpoints/orderId.txt", "w").write(copy.deepcopy(self._orderId))
+            except KeyError:
+                self._error_msg = self._response.json()["error"]
             return self._response
         else:
             self._response = requests.post(

@@ -1,55 +1,49 @@
-from endpoints.books import BookEndpoint
+import pytest
+
 from endpoints.orders import OrderEndpoint
 from endpoints.apiClient import ApiClient
 
 
 
 
-def test_multiple_books_endpoint():
-    books = BookEndpoint()
-    books.getting_multiple_books()
-    assert books.checking_status_code() == 201
 
-def test_single_books_endpoint():
-    books = BookEndpoint()
-    books.getting_single_book(bookId="1")
-    assert books.checking_status_code() == 200
-
-def test_submitting_book_order(apiKey):
+@pytest.mark.parametrize("bookId, status_code", [
+    (1, 201), (2, 200)
+])
+def test_submitting_book_order(apiToken, bookId, status_code):
     orders = OrderEndpoint()
-    orders.setup_request_body(bookId="1", customerName="Michael Scott")
-    orders.setup_auth_headers(apiKey)
+    orders.setup_request_body(bookId=bookId, customerName="Jumbo")
+    orders.setup_auth_headers(apiToken)
 
     orders.submitting_book_order()
-    assert orders.checking_status_code() == 201
+    assert orders.checking_status_code() == status_code
 
-def test_multiple_ordered_books_record(apiKey):
+def test_multiple_ordered_books_record(apiToken):
     orders = OrderEndpoint()
-    orders.setup_auth_headers(apiKey)
+    orders.setup_auth_headers(apiToken)
     
     orders.getting_all_ordered_books_record()
     assert orders.checking_status_code() == 200
 
-def test_single_ordered_book_record(apiKey):
+def test_single_ordered_book_record(apiToken):
     orders = OrderEndpoint()
-    orders.setup_auth_headers(apiKey)
+    orders.setup_auth_headers(apiToken)
     orders.getting_order_id()
 
     orders.getting_single_ordered_book_record()
     assert orders.checking_status_code() == 200
 
-def test_updating_ordered_book_record(apiKey):
+def test_updating_ordered_book_record(apiToken):
     orders = OrderEndpoint()
-    orders.setup_auth_headers(apiKey)
-    orders.update_customer_name(customerName="Dwight Schrute")
+    orders.setup_auth_headers(apiToken)
     orders.getting_order_id()
 
-    orders.updating_ordered_book_record()
+    orders.updating_ordered_book_record(customerName="Yotsuba")
     assert orders.checking_status_code() == 204
 
-def test_delete_ordered_book_record(apiKey):
+def test_delete_ordered_book_record(apiToken):
     orders = OrderEndpoint()
-    orders.setup_auth_headers(apiKey)
+    orders.setup_auth_headers(apiToken)
     orders.getting_order_id()
 
     orders.deleting_ordered_book_entry()

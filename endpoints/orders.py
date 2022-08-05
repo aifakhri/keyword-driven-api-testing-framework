@@ -16,15 +16,15 @@ class OrderEndpoint(BaseClass):
     def setup_auth_headers(self, apiKey):
         self._auth_header["Authorization"] = apiKey
 
-    def update_customer_name(self, customerName) :
-        self._customer_name["customerName"] = customerName
+    # def update_customer_name(self, customerName) :
+    #     self._customer_name["customerName"] = customerName
 
     def getting_order_id(self):
         resp = self._send_get_requests(auth=True)
-        if resp.json() != "":
+        if resp.status_code == 200:
             self._orderId = resp.json()[0]["id"]
         else:
-            return "Order is Empty Please Submit Order First"
+            self._orderId = open("endpoints/orderId.txt", "r").read()
         
     def submitting_book_order(self):
         return self._send_post_requests()
@@ -32,14 +32,15 @@ class OrderEndpoint(BaseClass):
     def getting_all_ordered_books_record(self):
         return self._send_get_requests(auth=True)
     
-    def getting_single_ordered_book_record(self):
-        self._endpoint_url += self._orderId
+    def getting_single_ordered_book_record(self, orderId=""):
+        self._endpoint_url += self._orderId if (orderId == "") else orderId
         return self._send_get_requests(auth=True)
             
-    def updating_ordered_book_record(self):
+    def updating_ordered_book_record(self, customerName):
+        self._customer_name["customerName"] = customerName
         self._endpoint_url += self._orderId
         return self._send_patch_requests()
 
-    def deleting_ordered_book_entry(self):
-        self._endpoint_url += self._orderId
+    def deleting_ordered_book_entry(self, orderId=""):
+        self._endpoint_url += self._orderId if (orderId == "") else orderId
         return self._send_delete_requests()
