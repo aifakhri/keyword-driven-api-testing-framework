@@ -18,7 +18,6 @@ C:\{Your Directory}\TestDir>python -m pip install requirements.txt
 Clone the repo with Git to your desired local machine directory:
 ```Git
 git clone [url]
-
 ```
 The ``program_runner.py`` file will run all the test cases inside the ``test_cases`` folder by running this command:
 ```Windows Console
