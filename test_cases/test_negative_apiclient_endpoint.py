@@ -4,7 +4,7 @@ from endpoints.apiClient import ApiClient
 
 
 @pytest.mark.parametrize("clientName, clientEmail", [
-    (12345, 12345), (12345, "JohnDoe"), ("JohnDoe", 12345)
+    (12345, 12345), ("JohnDoe", 12345), (12345, "JohnDoe@example.com")
 ])
 def test_api_client_body_parameter(clientName, clientEmail):
 

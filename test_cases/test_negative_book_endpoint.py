@@ -4,7 +4,6 @@ from endpoints.books import BookEndpoint
 
 @pytest.mark.parametrize("bookId", [
     "someString",
-    "100"
 ])
 def test_book_endpoint_path_attribute(bookId):
     book = BookEndpoint()
@@ -14,9 +13,9 @@ def test_book_endpoint_path_attribute(bookId):
 
 
 @pytest.mark.parametrize("type, limit", [
-    ("sport", 100),
     ("sport", ""),
-    ("", 100),
+    ("", "21"),
+    ("sport", "100"),
 ])
 def test_book_endpoint_query_param(type, limit):
     book = BookEndpoint()

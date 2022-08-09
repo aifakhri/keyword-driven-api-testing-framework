@@ -6,7 +6,7 @@ from endpoints.books import BookEndpoint
 def test_multiple_books_endpoint():
     books = BookEndpoint()
     books.getting_multiple_books()
-    assert books.checking_status_code() == 201
+    assert books.checking_status_code() == 200
 
 
 @pytest.mark.parametrize("bookId", [
@@ -19,8 +19,7 @@ def test_single_books_endpoint(bookId):
 
 
 @pytest.mark.parametrize("type, limit", [
-    ("fiction", ""), ("non-fiction", ""), ("", 3), 
-    ("fiction", 2), ("non-ficton", 2)
+    ("fiction", ""), ("non-fiction", ""), ("", "3"), ("fiction", "2"), ("non-ficton", "2")
 ])
 def test_filtering_books(type, limit):
     books = BookEndpoint()

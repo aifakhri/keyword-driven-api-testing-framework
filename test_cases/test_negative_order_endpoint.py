@@ -4,9 +4,10 @@ from endpoints.orders import OrderEndpoint
 
 
 @pytest.mark.parametrize("bookId, custName", [
-    ("bookId", "Michael Scott"),
-    ("3", "Michael Scott"),
-    ("3", 200)
+    ("someBook", "Some Customer"),
+    (1, 2022),
+    ("1", "Some Customer"),
+    (21, "Some Customer")
 ])
 def test_submit_string_bookId(apiToken, bookId, custName):
     orders = OrderEndpoint()
@@ -18,14 +19,14 @@ def test_submit_string_bookId(apiToken, bookId, custName):
 
 
 @pytest.mark.parametrize("custName", [
-    100, 200, 1.2
+    200, 1.2, True
 ])
 def test_update_customer_with_integer(apiToken, custName):
     orders = OrderEndpoint()
     orders.setup_auth_headers(apiToken)
     orders.updating_ordered_book_record(customerName=custName)
     
-    assert orders.checking_status_code() == 404
+    assert orders.checking_status_code() == 400
 
 
 @pytest.mark.parametrize("method, orderId", [
@@ -56,7 +57,6 @@ def test_order_endpoint_method_with_random_apikey(method, orderId):
 def test_order_endpoint_with_random_orderId(apiToken, method):
     orderId = "RandomOrderId"
     orders = OrderEndpoint()
-    # orders._orderId = orderId
     orders.setup_auth_headers(apiToken)
 
     if method == "GET":

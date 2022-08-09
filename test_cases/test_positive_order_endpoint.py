@@ -5,7 +5,7 @@ from endpoints.orders import OrderEndpoint
 
 
 @pytest.mark.parametrize("bookId, status_code", [
-    (1, 201), (2, 200)
+    (1, 201), (2, 404)
 ])
 def test_submitting_book_order(apiToken, bookId, status_code):
     orders = OrderEndpoint()
