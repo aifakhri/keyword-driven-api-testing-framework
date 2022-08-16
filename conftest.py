@@ -7,7 +7,7 @@ from endpoints.apiClient import ApiClient
 
 
 @pytest.fixture
-def apiKey():
+def apiToken():
     api = ApiClient()
 
     client_name = "danbo"
