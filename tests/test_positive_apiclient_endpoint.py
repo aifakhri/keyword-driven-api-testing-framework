@@ -3,10 +3,10 @@ from endpoints.apiClient import ApiClient
 
 
 
-@pytest.mark.parametrize("custName, custEmail, expected_status_code", 
-    ["test", "test@something.com", 201],
-    ["test", "test@something.com", 409],
-)
+@pytest.mark.parametrize("custName, custEmail, expected_status_code", [ 
+    ("random", "random@something.com", 201),
+    ("random", "random@something.com", 409),
+])
 def test_api_client_endpoint(custName, custEmail, expected_status_code):
     api_client = ApiClient()
     api_client.setup_api_client_detail(name=custName, email=custEmail)
