@@ -19,7 +19,7 @@ def test_multiple_ordered_books_record(apiToken):
     orders = OrderEndpoint()
     orders.setup_auth_headers(apiToken)
     
-    orders.getting_all_ordered_books_record()
+    orders.getting_all_ordered_book_records()
     assert orders.checking_status_code() == 200
 
 def test_single_ordered_book_record(apiToken):
