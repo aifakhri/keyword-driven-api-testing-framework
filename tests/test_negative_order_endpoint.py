@@ -26,7 +26,7 @@ def test_update_customer_with_integer(apiToken, custName):
     orders.setup_auth_headers(apiToken)
     orders.updating_ordered_book_record(customerName=custName)
     
-    assert orders.checking_status_code() == 400
+    assert orders.checking_status_code() == 404
 
 
 @pytest.mark.parametrize("method, orderId", [
@@ -40,11 +40,11 @@ def test_order_endpoint_method_with_random_apikey(method, orderId):
     orders.getting_order_id()
     
     if method == "GET" and orderId == False:
-        orders.getting_all_ordered_books_record()
+        orders.getting_all_ordered_book_records()
     elif method == "GET" and orderId == True:
         orders.getting_single_ordered_book_record()
     elif method == "PATCH":
-        orders.updating_ordered_book_record()
+        orders.updating_ordered_book_record(customerName="Kevin")
     elif method == "DELETE":
         orders.deleting_ordered_book_entry()
 
