@@ -19,17 +19,32 @@ Clone the repo with Git to your desired local machine directory:
 ```Git
 git clone [url]
 ```
-The ``program_runner.py`` file will run all the test cases inside the ``test_cases`` folder by running this command:
-```Windows Console
-python program_runner.py
-```
+There are several ways to run this program
 
-You could also select whether you want to run positive (happy) or negative (sad) test cases in the ``test_cases`` folder by adding ``-t`` option while running the ``program_runner.py`` file. Here is the example:
-```Windows Console
-python program_runner.py -t positive
+##### Running All the Tests
+To run all the test suites in the modole
+```Console
+pytest
 ```
-
-Note: the argument is only positive or negative. Other will be rejected.
+##### Running Only Positive Tests
+```Console
+pytest -k test_positive
+```
+##### Running Only Negative Tests
+```Console
+pytest -k test_negative
+```
+##### Running Only Endpoint (book, order or ApiClient)
+```Console
+pytest -k {{ endpoint name }}_endpoint
+```
+For example if you want to test only book endpoint (both negative and positive):
+```Console
+pytest -k book_endpoint
+```
+##### Note: 
+You will encounter error in the testing negative test. This is expected behaviour because the API is designed to for testing. Hence, we prove error on the API endpoint!
+If you have an error with API Client, please note that you can only request client once per seven day. So, if on the positve and negative test for apiClient, you might get inconsistent value.
 
 ## Resource
 You could find the API documentation below:
