@@ -12,4 +12,4 @@ def test_api_client_body_parameter(clientName, clientEmail):
     api_client.setup_api_client_detail(name=clientName, email=clientEmail)
     api_client.register_api_client()
 
-    assert api_client == 400
+    assert api_client.checking_status_code() == 400
