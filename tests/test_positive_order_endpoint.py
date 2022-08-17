@@ -15,12 +15,14 @@ def test_submitting_book_order(apiToken, bookId, status_code):
     orders.submitting_book_order()
     assert orders.checking_status_code() == status_code
 
+
 def test_multiple_ordered_books_record(apiToken):
     orders = OrderEndpoint()
     orders.setup_auth_headers(apiToken)
     
     orders.getting_all_ordered_book_records()
     assert orders.checking_status_code() == 200
+
 
 def test_single_ordered_book_record(apiToken):
     orders = OrderEndpoint()
@@ -30,6 +32,7 @@ def test_single_ordered_book_record(apiToken):
     orders.getting_single_ordered_book_record()
     assert orders.checking_status_code() == 200
 
+
 def test_updating_ordered_book_record(apiToken):
     orders = OrderEndpoint()
     orders.setup_auth_headers(apiToken)
@@ -37,6 +40,7 @@ def test_updating_ordered_book_record(apiToken):
 
     orders.updating_ordered_book_record(customerName="Yotsuba")
     assert orders.checking_status_code() == 204
+
 
 def test_delete_ordered_book_record(apiToken):
     orders = OrderEndpoint()

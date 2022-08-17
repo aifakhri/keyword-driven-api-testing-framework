@@ -2,7 +2,7 @@ import pytest
 from endpoints.books import BookEndpoint
 
 
-
+@pytest.mark.books
 def test_multiple_books_endpoint():
     books = BookEndpoint()
     books.getting_multiple_books()
