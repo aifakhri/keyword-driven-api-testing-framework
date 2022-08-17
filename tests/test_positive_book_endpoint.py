@@ -10,7 +10,7 @@ def test_multiple_books_endpoint():
 
 
 @pytest.mark.parametrize("bookId", [
-    1, 2, 3, 4, 5, 6
+    "1", "2", "3", "4", "5", "6"
 ])
 def test_single_books_endpoint(bookId):
     books = BookEndpoint()
@@ -19,7 +19,7 @@ def test_single_books_endpoint(bookId):
 
 
 @pytest.mark.parametrize("type, limit", [
-    ("fiction", ""), ("non-fiction", ""), ("", "3"), ("fiction", "2"), ("non-ficton", "2")
+    ("fiction", ""), ("non-fiction", ""), ("", "3"), ("fiction", "2"), ("non-fiction", "2")
 ])
 def test_filtering_books(type, limit):
     books = BookEndpoint()
