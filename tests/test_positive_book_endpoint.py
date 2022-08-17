@@ -24,5 +24,4 @@ def test_single_books_endpoint(bookId):
 def test_filtering_books(type, limit):
     books = BookEndpoint()
     books.getting_multiple_books(type=type, limit=limit)
-
     assert books.checking_status_code() == 200
